@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-const readXlsxFile = require("read-excel-file/node");
 
 export const getUsers = (req: Request, res: Response) => {
     req.params
@@ -22,14 +21,6 @@ export const postUsuario = (req: any, res: Response) => {
         if (req.files == undefined) {
             return res.status(400).send("Please upload an excel file!");
         }
-
-        let path =
-            __dirname + "/resources/static/assets/uploads/" + req.file.filename;
-
-            readXlsxFile(path).then((rows:any) =>{
-                rows.shift();
-                console.log(rows);
-            })
 
     } catch (error) {
         console.error(error);

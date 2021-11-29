@@ -18,20 +18,20 @@ export class Server {
         this.routes();
     }
 
-    middlewares(){
+    middlewares() {
         // CORS
         this.app.use(cors());
-        
+
         // Lecture Body
         this.app.use(express.json());
-        this.app.use(express.urlencoded({extended: true}));
+        this.app.use(express.urlencoded({ extended: true }));
 
         // Public folder 
         this.app.use(express.static('public'));
 
     }
 
-    routes(){
+    routes() {
         this.app.use(this.apiPaths.usuarios, userRoutes);
     }
 

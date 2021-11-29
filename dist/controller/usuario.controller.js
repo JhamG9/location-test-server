@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postUsuario = exports.getUsers = void 0;
-const readXlsxFile = require("read-excel-file/node");
 const getUsers = (req, res) => {
     req.params;
     res.json({
@@ -21,11 +20,6 @@ const postUsuario = (req, res) => {
         if (req.files == undefined) {
             return res.status(400).send("Please upload an excel file!");
         }
-        let path = __dirname + "/resources/static/assets/uploads/" + req.file.filename;
-        readXlsxFile(path).then((rows) => {
-            rows.shift();
-            console.log(rows);
-        });
     }
     catch (error) {
         console.error(error);
