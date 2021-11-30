@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const usuario_controller_1 = require("../controller/usuario.controller");
+const location_controller_1 = require("../controller/location.controller");
 const multer_1 = __importDefault(require("multer"));
 const mime_types_1 = __importDefault(require("mime-types"));
 const csv_parser_1 = __importDefault(require("csv-parser"));
@@ -19,7 +19,7 @@ const storage = multer_1.default.diskStorage({
             .pipe((0, csv_parser_1.default)()).on('data', (row) => {
             csvData.push(row);
         }).on('end', function () {
-            (0, usuario_controller_1.insertLatLng)(csvData);
+            (0, location_controller_1.insertLatLng)(csvData);
         });
     }
 });
@@ -27,7 +27,7 @@ const upload = (0, multer_1.default)({
     storage: storage
 });
 const router = (0, express_1.Router)();
-router.get('/', usuario_controller_1.getUsers);
-router.post('/route', upload.single('avatar'));
+router.get('/', location_controller_1.getLocations);
+router.post('/location', upload.single('avatar'));
 exports.default = router;
 //# sourceMappingURL=usuario.router.js.map

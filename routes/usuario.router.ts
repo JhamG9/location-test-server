@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getUsers, insertLatLng } from "../controller/usuario.controller";
+import { getLocations, insertLatLng } from "../controller/location.controller";
 import multer from "multer";
 import mimeTypes from "mime-types";
 import csv from "csv-parser";
@@ -27,7 +27,7 @@ const upload = multer({
 
 const router = Router();
 
-router.get('/', getUsers);
-router.post('/route', upload.single('avatar'));
+router.get('/', getLocations);
+router.post('/location', upload.single('avatar'));
 
 export default router;

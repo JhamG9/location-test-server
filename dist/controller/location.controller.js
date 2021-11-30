@@ -27,4 +27,4 @@ const insertLatLng = (data) => {
     console.log("Insert latlng", data);
 };
 exports.insertLatLng = insertLatLng;
-//# sourceMappingURL=usuario.controller.js.map
+//# sourceMappingURL=location.controller.js.map
