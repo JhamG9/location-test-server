@@ -23,8 +23,7 @@ class Server {
         this.app.use((0, cors_1.default)());
         // Lecture Body
         this.app.use(express_1.default.json());
-        this.app.use(express_1.default.urlencoded({ extended: true }));
-        // Public folder 
+        // Public folder
         this.app.use(express_1.default.static('public'));
     }
     routes() {

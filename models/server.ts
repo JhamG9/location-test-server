@@ -24,11 +24,9 @@ export class Server {
 
         // Lecture Body
         this.app.use(express.json());
-        this.app.use(express.urlencoded({ extended: true }));
 
-        // Public folder 
+        // Public folder
         this.app.use(express.static('public'));
-
     }
 
     routes() {
@@ -38,7 +36,7 @@ export class Server {
     listen() {
         this.app.listen(this.port, () => {
             console.log('Servidor corriendo en puerto ' + this.port);
-        })
+        });
     }
 }
 
