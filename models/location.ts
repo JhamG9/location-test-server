@@ -6,7 +6,7 @@ const Location = db.define('location', {
     lat: {
         type: DataTypes.STRING
     },
-    lng: {
+    lon: {
         type: DataTypes.STRING
     }
 });

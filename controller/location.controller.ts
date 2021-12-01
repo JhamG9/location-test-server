@@ -1,4 +1,8 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
+
+import csv from "csv-parser";
+import fs from "fs";
+import Latlng from "../interfaces/Latlng";
 import Location from "../models/location";
 
 export const getLocations = async (req: Request, res: Response) => {
@@ -6,12 +10,30 @@ export const getLocations = async (req: Request, res: Response) => {
     res.json(locations);
 }
 
-/**
- * Method insert the data in DB of csv file
- * @param data array of csv
- */
-export const insertLatLng = (data: Array<[]>) => {
+export const postLocation = (req: Request, res: Response) => {
+    let csvData: any[] = [];
+    fs.createReadStream(__dirname + '/../../uploads/' + req.file?.filename)
+        .pipe(csv()).on('data', (row) => {
+            csvData.push(row);
+        }).on('end', function () {
+            var result: any = [];
+            
+            for (var i = 0; i < csvData.length; i++) {
+                if (i % 1000 == 0) result.push([]);
+                result[Math.floor(i / 1000)].push(csvData[i]);
+            }
 
-    console.log("Insert latlng", data);
+            result.forEach((item:any) => {
+                insertLocation(item);
+            });
 
+            res.json({
+                msg: 'Ubicaciones ingresadas correctamente',
+                data: null
+            });
+        });
+}
+
+const insertLocation = (locations: any) => {
+    const locationInsert = Location.bulkCreate(locations);
 }

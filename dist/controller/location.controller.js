@@ -12,19 +12,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertLatLng = exports.getLocations = void 0;
+exports.postLocation = exports.getLocations = void 0;
+const csv_parser_1 = __importDefault(require("csv-parser"));
+const fs_1 = __importDefault(require("fs"));
 const location_1 = __importDefault(require("../models/location"));
 const getLocations = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const locations = yield location_1.default.findAll().catch(err => console.error(err));
     res.json(locations);
 });
 exports.getLocations = getLocations;
-/**
- * Method insert the data in DB of csv file
- * @param data array of csv
- */
-const insertLatLng = (data) => {
-    console.log("Insert latlng", data);
+const postLocation = (req, res) => {
+    var _a;
+    let csvData = [];
+    fs_1.default.createReadStream(__dirname + '/../../uploads/' + ((_a = req.file) === null || _a === void 0 ? void 0 : _a.filename))
+        .pipe((0, csv_parser_1.default)()).on('data', (row) => {
+        csvData.push(row);
+    }).on('end', function () {
+        var result = [];
+        for (var i = 0; i < csvData.length; i++) {
+            if (i % 1000 == 0)
+                result.push([]);
+            result[Math.floor(i / 1000)].push(csvData[i]);
+        }
+        result.forEach((item) => {
+            insertLocation(item);
+        });
+        res.json({
+            msg: 'Ubicaciones ingresadas correctamente',
+            data: null
+        });
+    });
 };
-exports.insertLatLng = insertLatLng;
+exports.postLocation = postLocation;
+const insertLocation = (locations) => {
+    const locationInsert = location_1.default.bulkCreate(locations);
+};
 //# sourceMappingURL=location.controller.js.map

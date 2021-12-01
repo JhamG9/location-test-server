@@ -9,7 +9,7 @@ const Location = conection_1.default.define('location', {
     lat: {
         type: sequelize_1.DataTypes.STRING
     },
-    lng: {
+    lon: {
         type: sequelize_1.DataTypes.STRING
     }
 });
