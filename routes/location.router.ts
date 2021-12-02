@@ -19,6 +19,6 @@ const upload = multer({
 const router = Router();
 
 router.get('/', getLocations);
-router.post('/location', upload.single('avatar'), postLocation);
+router.post('/', upload.single('file'), postLocation);
 
 export default router;

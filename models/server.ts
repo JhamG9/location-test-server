@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import userRoutes from "../routes/usuario.router";
+import locationRoutes from "../routes/location.router";
 import cors from 'cors';
 
 import db from "../db/conection";
@@ -8,7 +8,7 @@ export class Server {
     private app: Application;
     private port: string;
     private apiPaths = {
-        usuarios: '/api/usuarios'
+        location: '/api/location'
     }
 
     constructor() {
@@ -21,11 +21,11 @@ export class Server {
         this.routes();
     }
 
-    async dbConnection(){
+    async dbConnection() {
         try {
             await db.authenticate();
             console.log("Database online");
-        } catch (error:any) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -42,7 +42,7 @@ export class Server {
     }
 
     routes() {
-        this.app.use(this.apiPaths.usuarios, userRoutes);
+        this.app.use(this.apiPaths.location, locationRoutes);
     }
 
     listen() {

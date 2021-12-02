@@ -1,1 +1,1 @@
-{"version":3,"file":"conection.js","sourceRoot":"","sources":["../../db/conection.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,EAAE,GAAG,IAAI,qBAAS,CAAC,WAAW,EAAC,MAAM,EAAE,EAAE,EAAE;IAC7C,IAAI,EAAE,WAAW;IACjB,OAAO,EAAE,SAAS;IAClB,iBAAiB;CACpB,CAAC,CAAC;AAGH,kBAAe,EAAE,CAAC"}
+{"version":3,"file":"conection.js","sourceRoot":"","sources":["../../db/conection.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,EAAE,GAAG,IAAI,qBAAS,CAAC,WAAW,EAAE,MAAM,EAAE,EAAE,EAAE;IAC9C,IAAI,EAAE,WAAW;IACjB,OAAO,EAAE,SAAS;IAClB,OAAO,EAAE,KAAK;CACjB,CAAC,CAAC;AAGH,kBAAe,EAAE,CAAC"}
