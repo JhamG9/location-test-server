@@ -1,6 +1,6 @@
 # ServerTest App
 
-This project was created with [Node.js](https://nodejs.org/es/) version 12.22.4
+This project was created with [Node.js](https://nodejs.org/es/) version 12.22.4 and a mvc architecture
 
 # technologies
  - [Cors](https://www.npmjs.com/package/cors)
@@ -15,6 +15,17 @@ This project was created with [Node.js](https://nodejs.org/es/) version 12.22.4
 # Routes
  - /api/location?page=1 - GET **(Method get locations of database)**
  - /api/location - POST **(Method upload a file csv of locations and save in database the data)**
+
+ ```
+ For upload a file csv, i use Postman with this configuration:
+
+ Header:
+   - Content-type: multipart/form-data;
+   - Accept: */*
+
+  Body(form-data):
+   - file: fileForUpload.csv
+ ```
 
 
 ## Install and Test
